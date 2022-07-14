@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Sunflower:wght@500&display=swap');
+body {
+    font-family: 'Sunflower', sans-serif;
+    background: url(../img/bg-light.jpg) no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    overflow: hidden;
+}
+
+.dark-mode .dark-bg-body {
+    background: url(../img/bg-dark.jpg) no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.lh-0 {
+    line-height: 0;
+}
+
+.swich-class {
+    width: 2.5rem !important;
+    height: 1.2rem !important;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+.dark-mode .dark-text-white{
+    color: aliceblue;
+}
+
+.countdown div{
+    text-align: center;
+    border: 2px solid;
+    border-radius: 8px;
+    margin: 10px;
+    width: 120px;
+    padding: 15px 0px;
+}
+
+.ityped-cursor {
+    font-size: 2.2rem;
+    opacity: 1;
+    -webkit-animation: blink 0.3s infinite;
+    -moz-animation: blink 0.3s infinite;
+    animation: blink 0.3s infinite;
+    animation-direction: alternate;
+}
+
+@keyframes blink {
+    100% {
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes blink {
+    100% {
+        opacity: 0;
+    }
+}
+
+@-moz-keyframes blink {
+    100% {
+        opacity: 0;
+    }
+}

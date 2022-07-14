@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html x-data="darkMode" lang="en" :class="{'dark-mode' : darkMode}">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Comming Soon</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.0/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="./css/main.css" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+      crossorigin="anonymous"
+      defer
+    ></script>
+    <script
+      src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"
+      defer
+    ></script>
+    <script src="https://unpkg.com/ityped@1.0.3"></script>
+  </head>
+  <body class="dark-bg-body">
+    <div class="container g-5">
+      <div class="row mt-5">
+        <div class="col-12 col-sm-10 mt-2">
+          <div class="d-flex justify-content-center justify-content-sm-start">
+            <a
+              class="dark-text-white"
+              href="https://www.linkedin.com/in/kianoosh-moloodi/"
+              >LinkedIn</a
+            >
+            <a
+              class="mx-3 dark-text-white"
+              href="https://github.com/Kianoosh-Moloodi"
+              >Github</a
+            >
+            <a class="dark-text-white" href="https://onlinemag24.com/">Blog</a>
+          </div>
+        </div>
+        <div class="col-12 col-sm-2 mt-2">
+          <div
+            class="d-flex align-items-center justify-content-center justify-content-sm-end"
+          >
+            <i
+              class="bi bi-brightness-high-fill fs-4 me-3 lh-0 dark-text-white"
+            ></i>
+            <div class="form-check form-switch">
+              <input
+                x-model="darkMode"
+                class="form-check-input swich-class"
+                type="checkbox"
+                role="switch"
+                id="flexSwitchCheckDefault"
+              />
+            </div>
+            <i class="bi bi-moon-stars-fill fs-5 ms-3 lh-0 dark-text-white"></i>
+          </div>
+        </div>
+      </div>
+      <div class="row text-center dark-text-white mt-5">
+        <h2 class="mb-3 fw-bold">
+          This Project Uses <span id="text-anim"></span>
+        </h2>
+        <p>
+          This project is an excellent example of understanding the
+          implementation of the landing page.
+          <br />
+          If you like the project, I will be happy if you rate my skills on
+          LinkedIn.
+        </p>
+      </div>
+      <div
+        x-data="countdown"
+        class="row dark-text-white justify-content-center countdown my-4"
+      >
+        <div>
+          <h3 class="fw-bold" x-text="days"></h3>
+          <h6>Day</h6>
+        </div>
+        <div>
+          <h3 class="fw-bold" x-text="hours"></h3>
+          <h6>Hour</h6>
+        </div>
+        <div>
+          <h3 class="fw-bold" x-text="minutes"></h3>
+          <h6>Minute</h6>
+        </div>
+        <div>
+          <h3 class="fw-bold" x-text="seconds"></h3>
+          <h6>Second</h6>
+        </div>
+      </div>
+      <div class="row justify-content-center mt-5">
+        <div class="col-12 col-sm-8 col-lg-6">
+          <div class="input-group">
+            <input
+              type="text"
+              placeholder="Join My Newsletter"
+              class="form-control"
+            />
+            <button class="btn btn-dark border" type="button">Subscribe</button>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 text-center mt-3">
+          <a href="https://www.linkedin.com/in/kianoosh-moloodi/"
+            ><i class="bi bi-linkedin fs-4 mx-2 dark-text-white"></i
+          ></a>
+          <a href="https://github.com/Kianoosh-Moloodi"
+            ><i class="bi bi-github fs-4 mx-2 dark-text-white"></i
+          ></a>
+          <a href="https://onlinemag24.com/"
+            ><i class="bi bi-stickies-fill fs-4 mx-2 dark-text-white"></i
+          ></a>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("alpine:init", () => {
+        Alpine.data("darkMode", () => ({
+          darkMode: false,
+
+          init() {
+            this.darkMode = localStorage.theme === "dark" ? true : false;
+
+            this.$watch("darkMode", (value) => {
+              localStorage.theme = value ? "dark" : "light";
+            });
+          },
+        })),
+          Alpine.data("countdown", () => ({
+            days: "00",
+            hours: "00",
+            minutes: "00",
+            seconds: "00",
+
+            init() {
+              let endDate = new Date(2048, 11, 1).getTime();
+              setInterval(() => {
+                let nowDate = new Date().getTime();
+                let time = endDate - nowDate;
+
+                if (time >= 0) {
+                  this.days = this.format(
+                    Math.floor(time / (1000 * 60 * 60 * 24))
+                  );
+                  this.hours = this.format(
+                    Math.floor(
+                      (time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+                    )
+                  );
+                  this.minutes = this.format(
+                    Math.floor((time % (1000 * 60 * 60)) / (1000 * 60))
+                  );
+                  this.seconds = this.format(
+                    Math.floor((time % (1000 * 60)) / 1000)
+                  );
+                }
+              }, 1000);
+            },
+
+            format(num) {
+              return num < 10 ? "0" + num : num;
+            },
+          }));
+      });
+    </script>
+    <script>
+      const textElement = document.querySelector("#text-anim");
+      ityped.init(textElement, {
+        strings: ["HTML & CSS", "Bootstrap 5", "Java Script", "Alpain Js"],
+      });
+    </script>
+  </body>
+</html>
